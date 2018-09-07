@@ -1,21 +1,17 @@
-import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { Component } from 'react'
+
+import Text from 'components/Text'
+import View from 'components/View'
+import Screen from 'components/Screen'
 
 export default class List extends Component {
     render() {
         return (
-            <View style={styles.container}>
-                <Text>TEST</Text>
-            </View>
-        );
+            <Screen>
+                <View isFlexible align="center" justify="center">
+                    <Text>TEST</Text>
+                </View>
+            </Screen>
+        )
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-});
