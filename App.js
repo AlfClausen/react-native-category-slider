@@ -1,9 +1,9 @@
 import React from 'react'
 
-import List from 'screens/List'
+import StickersList from 'screens/StickersList'
 
 export default function App() {
     return (
-        <List/>
+        <StickersList/>
     )
 }

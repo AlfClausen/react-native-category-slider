@@ -13,7 +13,7 @@ const borderRadiusStyles = StyleSheet.create({
     none: { borderRadius: 0 },
     medium: { borderRadius: 9 },
     large: { borderRadius: 15 },
-    full: { borderRadius: g(12) }
+    full: { borderRadius: 500 }
 })
 
 const directionStyles = StyleSheet.create({

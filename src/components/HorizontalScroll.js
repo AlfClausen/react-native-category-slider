@@ -5,28 +5,24 @@ import { FlatList, Platform, StyleSheet, Animated } from 'react-native'
 import View from 'components/View'
 import Separator from 'components/Separator'
 
-import { g, colors } from 'styles'
-
-const dotsColorStyles = StyleSheet.create({
-    white: { backgroundColor: colors.white },
-    black: { backgroundColor: colors.black }
-})
+import { g, colors, screenWidth } from 'styles'
 
 const styles = StyleSheet.create({
     dotsWrapper: {
-        height: g(1.5),
-        width: g(1.5),
-        marginHorizontal: g(1),
-        borderRadius: 5
+        height: 7,
+        width: 7,
+        marginHorizontal: 5,
+        borderRadius: 5,
+        backgroundColor: colors.black
     },
     containerShadow: {
         shadowColor: '#000000',
         shadowOffset: {
             width: 0,
-            height: 4
+            height: 0
         },
-        shadowRadius: 5,
-        shadowOpacity: 0.1
+        shadowRadius: 12,
+        shadowOpacity: 0.3
     }
 })
 
@@ -34,29 +30,22 @@ export default class HorizontalScroll extends Component {
     static propTypes = {
         data: PropTypes.any.isRequired,
         renderItem: PropTypes.any.isRequired,
-        align: PropTypes.string, // enum typecheck in View
         alignItem: PropTypes.oneOf(['start', 'center', 'end']),
         intervalWidth: PropTypes.number,
-        separatorWidth: PropTypes.number,
         hasDots: PropTypes.bool,
-        dotsColor: PropTypes.oneOf(['white', 'black']),
         hasTint: PropTypes.bool,
         hasPaging: PropTypes.bool
     }
     static defaultProps = {
-        separatorWidth: 0,
-        align: 'center',
         alignItem: 'start',
-        intervalWidth: 1,
-        dotsColor: 'white'
+        intervalWidth: screenWidth,
     }
     state = {
         scrollX: 0
     }
     render() {
         const {
-            hasDots, dotsColor, hasTint, hasPaging, align, alignItem,
-            separatorWidth, intervalWidth, data, renderItem
+            hasDots, hasTint, hasPaging, alignItem, intervalWidth, data, renderItem
         } = this.props
         const position = Animated.divide(this.state.scrollX, intervalWidth)
         const handleScroll = (e) => {
@@ -65,24 +54,22 @@ export default class HorizontalScroll extends Component {
             this.setState({ scrollX: contentOffset.x })
         }
         return (
-            <View align={align}>
+            <View>
                 <FlatList
                     horizontal
                     scrollEnabled
-                    decelerationRate={hasPaging ? 0 : 'fast' }
-                    pagingEnabled={Platform.OS === 'android' && hasPaging} // Paging on android
-                    snapToInterval={intervalWidth} // Paging on iOS
+                    pagingEnabled={hasPaging}
+                    // snapToInterval={intervalWidth} // Paging on iOS
                     snapToAlignment={alignItem}
                     style={ hasTint ? [styles.containerShadow] : null }
                     data={data}
                     renderItem={renderItem}
                     onScroll={handleScroll}
                     showsHorizontalScrollIndicator={false}
-                    ItemSeparatorComponent={() => (<Separator width={separatorWidth} />)}
                     keyExtractor={(item, index) => index.toString()}
                 />
                 { hasDots && data.length > 1 &&
-                    <View>
+                    <View align="center">
                         <Separator height={4} />
                         <View flexDir="row">
                             { data.map((_, i) => {
@@ -94,7 +81,7 @@ export default class HorizontalScroll extends Component {
                                 return (
                                     <Animated.View
                                         key={i}
-                                        style={[{ opacity }, styles.dotsWrapper, dotsColorStyles[dotsColor]]}
+                                        style={[{ opacity }, styles.dotsWrapper,]}
                                     />
                                 )
                             })}

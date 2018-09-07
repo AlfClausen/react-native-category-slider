@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import { getStickers } from 'sagas/stickers'
 
-import { g } from 'styles'
+import { g, screenWidth } from 'styles'
 
 import Text from 'components/Text'
 import View from 'components/View'
@@ -10,7 +10,7 @@ import Screen from 'components/Screen'
 import HorizontalScroll from 'components/HorizontalScroll'
 import StickerItem from './components/StickerItem'
 
-export default class List extends Component {
+export default class StickersList extends Component {
     render() {
         const { category, stickers } = getStickers()[0]
         return (
@@ -18,10 +18,8 @@ export default class List extends Component {
                 <View justify="center">
                     <HorizontalScroll
                         hasDots
+                        hasTint
                         hasPaging
-                        dotsColor="black"
-                        separatorWidth={4}
-                        intervalWidth={g(44)}
                         data={stickers}
                         renderItem={({ item, index }) => {
                             const { img } = item
