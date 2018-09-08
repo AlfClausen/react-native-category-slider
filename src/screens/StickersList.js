@@ -12,29 +12,27 @@ import StickerItem from './components/StickerItem'
 
 export default class StickersList extends Component {
     render() {
-        const { category, stickers } = getStickers()[0]
+        const { category, color, stickers } = getStickers()[0]
         return (
-            <Screen>
-                <View isFlexible justify="center">
-                    <HorizontalScroll
-                        hasDots
-                        hasTint
-                        hasPaging
-                        data={stickers}
-                        renderItem={({ item, index }) => {
-                            const { img } = item
-                            return (
-                                <StickerItem
-                                    index={index}
-                                    lastIndex={stickers.length - 1}
-                                    category={category}
-                                    image={img}
-                                />
-                            )
-                        }}
-                    />
-                </View>
-            </Screen>
+            <View isFlexible justify="center" style={{ backgroundColor: color }}>
+                <HorizontalScroll
+                    hasDots
+                    hasTint
+                    hasPaging
+                    data={stickers}
+                    renderItem={({ item, index }) => {
+                        const { img } = item
+                        return (
+                            <StickerItem
+                                index={index}
+                                lastIndex={stickers.length - 1}
+                                category={category}
+                                image={img}
+                            />
+                        )
+                    }}
+                />
+            </View>
         )
     }
 }

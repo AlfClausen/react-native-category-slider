@@ -2,6 +2,7 @@ const data = [
     {
         category: 'cats',
         title: 'Котэ',
+        color: 'rgba(140, 160, 200, 0.20)',
         stickers: [
             {
                 key: 0,

@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     containerShadow: {
         shadowColor: '#000000',
         shadowRadius: 12,
-        shadowOpacity: 0.3
+        shadowOpacity: 0.5
     }
 })
 
@@ -67,7 +67,7 @@ export default class HorizontalScroll extends Component {
                             { data.map((_, i) => {
                                 const opacity = position.interpolate({
                                     inputRange: [i - 1, i, i + 1],
-                                    outputRange: [0.34, 1, 0.34],
+                                    outputRange: [0.25, 1, 0.25],
                                     extrapolate: 'clamp'
                                 })
                                 return (
