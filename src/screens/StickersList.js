@@ -15,7 +15,7 @@ export default class StickersList extends Component {
         const { category, stickers } = getStickers()[0]
         return (
             <Screen>
-                <View justify="center">
+                <View isFlexible justify="center">
                     <HorizontalScroll
                         hasDots
                         hasTint

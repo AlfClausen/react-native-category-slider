@@ -9,13 +9,6 @@ const styles = StyleSheet.create({
     isFlexible: { flex: 1 }
 })
 
-const borderRadiusStyles = StyleSheet.create({
-    none: { borderRadius: 0 },
-    medium: { borderRadius: 9 },
-    large: { borderRadius: 15 },
-    full: { borderRadius: 500 }
-})
-
 const directionStyles = StyleSheet.create({
     column: { flexDirection: 'column' },
     row: { flexDirection: 'row' }
@@ -43,7 +36,6 @@ export default class View extends Component {
       align: PropTypes.oneOf(['start', 'center']),
       justify: PropTypes.oneOf(['start', 'center']),
       bgColor: PropTypes.oneOf(['white', 'black', 'transparent']),
-      borderRadius: PropTypes.oneOf(['none', 'medium', 'large', 'full']),
       style: ViewPropTypes.style
   }
 
@@ -51,7 +43,6 @@ export default class View extends Component {
       hasMarginHorizontal: false,
       isFlexible: false,
       bgColor: 'transparent',
-      borderRadius: 'none'
   }
   setNativeProps = (nativeProps) => {
       this._root.setNativeProps(nativeProps);
@@ -64,7 +55,6 @@ export default class View extends Component {
           align,
           justify,
           bgColor,
-          borderRadius,
           style,
           ...rest
       } = this.props
@@ -76,7 +66,6 @@ export default class View extends Component {
               alignStyles[align],
               justifyStyles[justify],
               bgColorStyles[bgColor],
-              borderRadiusStyles[borderRadius],
               style
           ],
           ref: (view) => {

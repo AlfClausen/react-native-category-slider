@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { FlatList, Platform, StyleSheet, Animated } from 'react-native'
+import { FlatList, StyleSheet, Animated } from 'react-native'
 
 import View from 'components/View'
 import Separator from 'components/Separator'
@@ -9,18 +9,14 @@ import { g, colors, screenWidth } from 'styles'
 
 const styles = StyleSheet.create({
     dotsWrapper: {
-        height: 7,
-        width: 7,
+        height: g(2),
+        width: g(2),
         marginHorizontal: 5,
-        borderRadius: 5,
+        borderRadius: g(2) / 2,
         backgroundColor: colors.black
     },
     containerShadow: {
         shadowColor: '#000000',
-        shadowOffset: {
-            width: 0,
-            height: 0
-        },
         shadowRadius: 12,
         shadowOpacity: 0.3
     }
@@ -30,14 +26,12 @@ export default class HorizontalScroll extends Component {
     static propTypes = {
         data: PropTypes.any.isRequired,
         renderItem: PropTypes.any.isRequired,
-        alignItem: PropTypes.oneOf(['start', 'center', 'end']),
         intervalWidth: PropTypes.number,
         hasDots: PropTypes.bool,
         hasTint: PropTypes.bool,
         hasPaging: PropTypes.bool
     }
     static defaultProps = {
-        alignItem: 'start',
         intervalWidth: screenWidth,
     }
     state = {
@@ -45,7 +39,7 @@ export default class HorizontalScroll extends Component {
     }
     render() {
         const {
-            hasDots, hasTint, hasPaging, alignItem, intervalWidth, data, renderItem
+            hasDots, hasTint, hasPaging, intervalWidth, data, renderItem
         } = this.props
         const position = Animated.divide(this.state.scrollX, intervalWidth)
         const handleScroll = (e) => {
@@ -59,8 +53,6 @@ export default class HorizontalScroll extends Component {
                     horizontal
                     scrollEnabled
                     pagingEnabled={hasPaging}
-                    // snapToInterval={intervalWidth} // Paging on iOS
-                    snapToAlignment={alignItem}
                     style={ hasTint ? [styles.containerShadow] : null }
                     data={data}
                     renderItem={renderItem}
@@ -68,7 +60,7 @@ export default class HorizontalScroll extends Component {
                     showsHorizontalScrollIndicator={false}
                     keyExtractor={(item, index) => index.toString()}
                 />
-                { hasDots && data.length > 1 &&
+                { hasDots &&
                     <View align="center">
                         <Separator height={4} />
                         <View flexDir="row">
