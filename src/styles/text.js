@@ -17,6 +17,7 @@ export const sizeStyles = StyleSheet.create({
     title3: {
         ...defaultText,
         fontSize: 22,
+        fontWeight: '500',
         lineHeight: 26
     },
     title4: {

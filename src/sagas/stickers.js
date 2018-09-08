@@ -1,8 +1,11 @@
+import R from 'ramda'
+
 const data = [
     {
+        id: 1,
         category: 'cats',
         title: 'Котэ',
-        color: 'rgba(140, 160, 200, 0.2)',
+        color: 'rgba(140, 160, 200, 0.5)',
         stickers: [
             {
                 key: 0,
@@ -43,9 +46,10 @@ const data = [
         ]
     },
     {
+        id: 2,
         category: 'mems',
         title: 'Мемасы',
-        color: 'rgba(190, 140, 200, 0.2)',
+        color: 'rgba(190, 140, 200, 0.5)',
         stickers: [
             {
                 key: 0,
@@ -70,9 +74,10 @@ const data = [
         ]
     },
     {
+        id: 3,
         category: 'valley',
         title: 'Долина',
-        color: 'rgba(200, 180, 140, 0.2)',
+        color: 'rgba(200, 180, 140, 0.5)',
         stickers: [
             {
                 key: 0,
@@ -103,7 +108,10 @@ const data = [
 ]
 
 // In real app here should be saga with api call
-
-export function getStickers() {
+export function getStickers(category) {
+    if (category) {
+        // Return first equal category field value from data array
+        return R.find(R.propEq('category', category))(data)
+    }
     return data
 }

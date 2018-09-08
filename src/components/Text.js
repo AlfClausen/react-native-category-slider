@@ -14,7 +14,13 @@ const styles = StyleSheet.create({
 const colorStyles = StyleSheet.create({
     black: {
         color: colors.black,
-    }
+    },
+    white: {
+        color: colors.white,
+    },
+    inactive: {
+        color: colors.inactive,
+    },
 })
 
 const alignStyles = StyleSheet.create({
@@ -46,8 +52,8 @@ export default function Text({
 }
 
 Text.propTypes = {
-    color: PropTypes.oneOf(['black']),
-    size: PropTypes.oneOf(['body']),
+    color: PropTypes.oneOf(['white', 'black', 'inactive']),
+    size: PropTypes.oneOf(['title3', 'body']),
     align: PropTypes.oneOf(['left', 'center']),
     isAnimated: PropTypes.bool,
     style: ViewPropTypes.style

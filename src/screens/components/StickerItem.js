@@ -14,8 +14,8 @@ const styles = StyleSheet.create({
         borderRadius: (screenWidth - g(16)) / 2
     },
     imageWrapper: {
-        height: screenWidth - g(32),
-        width: screenWidth - g(32),
+        height: screenWidth - g(48),
+        width: screenWidth - g(48),
     },
 })
 

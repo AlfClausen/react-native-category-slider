@@ -8,5 +8,6 @@ export const g = (times = 1) => times * 4
 export const colors = {
     white: '#FFFFFF',
     black: '#000000',
+    inactive: 'rgba(255, 255, 255, 0.38)',
     transparent: 'transparent'
 }

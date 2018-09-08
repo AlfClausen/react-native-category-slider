@@ -27,19 +27,22 @@ export default class HorizontalScroll extends Component {
         data: PropTypes.any.isRequired,
         renderItem: PropTypes.any.isRequired,
         intervalWidth: PropTypes.number,
+        align: PropTypes.string, // enum typecheck in View
         hasDots: PropTypes.bool,
         hasTint: PropTypes.bool,
         hasPaging: PropTypes.bool
     }
     static defaultProps = {
         intervalWidth: screenWidth,
+        align: 'center',
+        hasPaging: false
     }
     state = {
         scrollX: 0
     }
     render() {
         const {
-            hasDots, hasTint, hasPaging, intervalWidth, data, renderItem
+            hasDots, hasTint, hasPaging, intervalWidth, align, data, renderItem
         } = this.props
         const position = Animated.divide(this.state.scrollX, intervalWidth)
         const handleScroll = (e) => {
@@ -48,7 +51,7 @@ export default class HorizontalScroll extends Component {
             this.setState({ scrollX: contentOffset.x })
         }
         return (
-            <View>
+            <View align={align}>
                 <FlatList
                     horizontal
                     scrollEnabled
