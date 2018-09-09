@@ -86,6 +86,9 @@ export default class StickersList extends Component {
                     data={getStickers()}
                     getItemLayout={getItemLayout}
                     onScroll={handleScroll}
+                    initialNumToRender={3}
+                    maxToRenderPerBatch={3}
+                    onEndReachedThreshold={0.5}
                     showsHorizontalScrollIndicator={false}
                     renderItem={({ item }) => {
                         const { category, img } = item
@@ -95,7 +98,7 @@ export default class StickersList extends Component {
                             />
                         )
                     }}
-                    keyExtractor={(item, index) => index.toString()}
+                    keyExtractor={(item) => item.key.toString()}
                 />
             </View>
         )
@@ -127,7 +130,7 @@ export default class StickersList extends Component {
     }
     render() {
         return (
-            <View isFlexible justify="center" style={{ backgroundColor: 'pink' }}>
+            <View isFlexible justify="center" style={{ backgroundColor: getCategories(this.state.tab).color }}>
             {/*<View isFlexible justify="center" style={{ backgroundColor: color }}>*/}
                 { this.renderTabs() }
                 { this.renderStickers() }

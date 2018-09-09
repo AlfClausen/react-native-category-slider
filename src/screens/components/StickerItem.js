@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
 import { StyleSheet } from 'react-native'
 
@@ -24,25 +24,28 @@ const styles = StyleSheet.create({
     },
 })
 
-export default function StickerItem({ image }) {
-    return (
-        <View
-            align="center"
-            justify="center"
-            style={{ width: screenWidth, height: screenWidth }}
-        >
+export default class StickerItem extends PureComponent {
+    static propTypes = {
+        image: PropTypes.string
+    }
+    render () {
+        const { image } = this.props
+        return (
             <View
                 align="center"
                 justify="center"
-                bgColor="white"
-                style={[styles.circleWrapper, styles.circleShadow]}
+                style={{ width: screenWidth, height: screenWidth }}
             >
-                <Img name={image} style={styles.imageWrapper}/>
+                <View
+                    align="center"
+                    justify="center"
+                    bgColor="white"
+                    style={[styles.circleWrapper, styles.circleShadow]}
+                >
+                    <Img name={image} style={styles.imageWrapper}/>
+                </View>
             </View>
-        </View>
-    )
-}
+        )
+    }
 
-StickerItem.propTypes = {
-    image: PropTypes.string
 }
