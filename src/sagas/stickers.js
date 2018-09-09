@@ -101,6 +101,33 @@ const data = [
                 img: 'valley5'
             },
         ]
+    },
+    {
+        category: 'pepe',
+        title: 'Пепе',
+        color: 'rgba(160, 200, 140, 0.5)',
+        stickers: [
+            {
+                key: 20,
+                img: 'pepe0'
+            },
+            {
+                key: 21,
+                img: 'pepe1'
+            },
+            {
+                key: 22,
+                img: 'pepe2'
+            },
+            {
+                key: 23,
+                img: 'pepe3'
+            },
+            {
+                key: 24,
+                img: 'pepe4'
+            }
+        ]
     }
 ]
 
