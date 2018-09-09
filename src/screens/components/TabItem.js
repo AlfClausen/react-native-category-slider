@@ -9,7 +9,7 @@ import Touch from 'components/Touch'
 
 export default function TabItem({ title, currentTab, tabId, onPress }) {
     return (
-        <Touch onPress={() => onPress(tabId)}>
+        <Touch disabled={currentTab === tabId} onPress={() => onPress(tabId)}>
             <Text
                 size="title3"
                 color={currentTab === tabId ? 'white' : 'inactive'}
