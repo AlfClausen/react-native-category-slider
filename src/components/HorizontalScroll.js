@@ -14,11 +14,6 @@ const styles = StyleSheet.create({
         marginHorizontal: 5,
         borderRadius: g(2) / 2,
         backgroundColor: colors.black
-    },
-    containerShadow: {
-        shadowColor: '#000000',
-        shadowRadius: 12,
-        shadowOpacity: 0.5
     }
 })
 

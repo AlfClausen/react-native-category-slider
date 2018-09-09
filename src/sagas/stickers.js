@@ -7,39 +7,39 @@ const data = [
         color: 'rgba(140, 160, 200, 0.5)',
         stickers: [
             {
-                id: 0,
+                key: 0,
                 img: 'cat0' // Here should be image url
             },
             {
-                id: 1,
+                key: 1,
                 img: 'cat1'
             },
             {
-                id: 2,
+                key: 2,
                 img: 'cat2'
             },
             {
-                id: 3,
+                key: 3,
                 img: 'cat3'
             },
             {
-                id: 4,
+                key: 4,
                 img: 'cat4'
             },
             {
-                id: 5,
+                key: 5,
                 img: 'cat5'
             },
             {
-                id: 6,
+                key: 6,
                 img: 'cat6'
             },
             {
-                id: 7,
+                key: 7,
                 img: 'cat7'
             },
             {
-                id: 8,
+                key: 8,
                 img: 'cat8'
             }
         ]
@@ -50,23 +50,23 @@ const data = [
         color: 'rgba(190, 140, 200, 0.5)',
         stickers: [
             {
-                id: 9,
+                key: 9,
                 img: 'mem0'
             },
             {
-                id: 10,
+                key: 10,
                 img: 'mem1'
             },
             {
-                id: 11,
+                key: 11,
                 img: 'mem2'
             },
             {
-                id: 12,
+                key: 12,
                 img: 'mem3'
             },
             {
-                id: 13,
+                key: 13,
                 img: 'mem4'
             },
         ]
@@ -77,27 +77,27 @@ const data = [
         color: 'rgba(200, 180, 140, 0.5)',
         stickers: [
             {
-                id: 14,
+                key: 14,
                 img: 'valley0'
             },
             {
-                id: 15,
+                key: 15,
                 img: 'valley1'
             },
             {
-                id: 16,
+                key: 16,
                 img: 'valley2'
             },
             {
-                id: 17,
+                key: 17,
                 img: 'valley3'
             },
             {
-                id: 18,
+                key: 18,
                 img: 'valley4'
             },
             {
-                id: 19,
+                key: 19,
                 img: 'valley5'
             },
         ]
@@ -108,7 +108,6 @@ const data = [
 
 export function getStickers() {
     // Combine arrays of objects into one array
-    // console.log(R.flatten(R.map(cat => R.map(sticker => R.merge(R.dissoc('stickers', cat), sticker), cat.stickers), data)))
     return R.flatten(R.map(cat => R.map(sticker => R.merge(R.dissoc('stickers', cat), sticker), cat.stickers), data))
 }
 
@@ -119,6 +118,7 @@ export function getStickers() {
 //     }
 //     R.map(check, getStickers())
 // }
+
 
 export function getCategories(category) {
     if (category) {

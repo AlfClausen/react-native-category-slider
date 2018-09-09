@@ -19,11 +19,6 @@ const styles = StyleSheet.create({
         marginHorizontal: 5,
         borderRadius: g(2) / 2,
         backgroundColor: colors.black
-    },
-    containerShadow: {
-        shadowColor: '#000000',
-        shadowRadius: 12,
-        shadowOpacity: 0.5
     }
 })
 
@@ -32,16 +27,14 @@ export default class StickersList extends Component {
         tab: getCategories()[0].category,
         scrollX: 0
     }
-
     onSelectTab = (category) => {
+        const stickerKey = getCategories(category).stickers[0].key
         this.setState({
             tab: category,
-            scrollX: 0
+            scrollX: screenWidth * stickerKey
         })
-        this.scrollBack()
-    }
-    scrollBack = () => {
-        this.refs.listRef.scrollToOffset({ x: 0, y: 0, animated: false })
+        this.flatListRef.scrollToIndex({ animated: false, index: stickerKey });
+
     }
     renderTabs() {
         const { tab } = this.state
@@ -70,19 +63,28 @@ export default class StickersList extends Component {
         )
     }
     renderStickers() {
-        const handleScroll = (e) => {
-            const { contentOffset } = e.nativeEvent
-            // console.log('nativeEvent ', e.nativeEvent)
-            this.setState({ scrollX: contentOffset.x })
+        const { tab } = this.state
+        const getItemLayout = (data, index) => (
+            { length: screenWidth, offset: screenWidth * index, index }
+        )
+        const handleScroll = (event) => {
+            const { contentOffset } = event.nativeEvent
+            const qwe = Math.round(contentOffset.x / screenWidth)
+            console.log('nativeEvent ', qwe)
+            this.setState({
+                scrollX: contentOffset.x,
+                tab: getStickers()[qwe].category
+            })
         }
         return (
             <View>
                 <FlatList
-                    ref="listRef"
+                    ref={(ref) => { this.flatListRef = ref }}
                     horizontal
                     scrollEnabled
                     pagingEnabled
-                    data={getCategories(this.state.tab).stickers}
+                    data={getStickers()}
+                    getItemLayout={getItemLayout}
                     onScroll={handleScroll}
                     showsHorizontalScrollIndicator={false}
                     renderItem={({ item }) => {
@@ -93,27 +95,28 @@ export default class StickersList extends Component {
                             />
                         )
                     }}
-                    style={styles.containerShadow}
                     keyExtractor={(item, index) => index.toString()}
                 />
             </View>
         )
     }
     renderDots() {
-        const position = Animated.divide(this.state.scrollX, screenWidth)
+        const { tab, scrollX } = this.state
+        const position = Animated.divide(scrollX, screenWidth)
         return (
             <View align="center">
                 <Separator height={4} />
                 <View flexDir="row">
-                    { getCategories(this.state.tab).stickers.map((_, i) => {
+                    { getCategories(tab).stickers.map((sticker) => {
+                        const { key } = sticker
                         const opacity = position.interpolate({
-                            inputRange: [i - 1, i, i + 1],
+                            inputRange: [key - 1, key, key + 1],
                             outputRange: [0.25, 1, 0.25],
                             extrapolate: 'clamp'
                         })
                         return (
                             <Animated.View
-                                key={i}
+                                key={key}
                                 style={[{ opacity }, styles.dotsWrapper,]}
                             />
                         )

@@ -13,6 +13,11 @@ const styles = StyleSheet.create({
         width: screenWidth - g(16),
         borderRadius: (screenWidth - g(16)) / 2
     },
+    circleShadow: {
+        shadowColor: '#000000',
+        shadowRadius: 12,
+        shadowOpacity: 0.5
+    },
     imageWrapper: {
         height: screenWidth - g(48),
         width: screenWidth - g(48),
@@ -30,7 +35,7 @@ export default function StickerItem({ image }) {
                 align="center"
                 justify="center"
                 bgColor="white"
-                style={styles.circleWrapper}
+                style={[styles.circleWrapper, styles.circleShadow]}
             >
                 <Img name={image} style={styles.imageWrapper}/>
             </View>
