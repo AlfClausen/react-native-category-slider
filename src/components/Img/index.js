@@ -44,6 +44,16 @@ export default function Img({ name, ...rest }) {
             return <Image source={require('./valley/valley4.png')} {...rest} />
         case 'valley5':
             return <Image source={require('./valley/valley5.png')} {...rest} />
+        case 'pepe0':
+            return <Image source={require('./pepe/pepe0.png')} {...rest} />
+        case 'pepe1':
+            return <Image source={require('./pepe/pepe1.png')} {...rest} />
+        case 'pepe2':
+            return <Image source={require('./pepe/pepe2.png')} {...rest} />
+        case 'pepe3':
+            return <Image source={require('./pepe/pepe3.png')} {...rest} />
+        case 'pepe4':
+            return <Image source={require('./pepe/pepe4.png')} {...rest} />
         default:
             return null
     }

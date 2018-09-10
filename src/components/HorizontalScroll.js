@@ -14,11 +14,6 @@ const styles = StyleSheet.create({
         marginHorizontal: 5,
         borderRadius: g(2) / 2,
         backgroundColor: colors.black
-    },
-    containerShadow: {
-        shadowColor: '#000000',
-        shadowRadius: 12,
-        shadowOpacity: 0.5
     }
 })
 
@@ -26,25 +21,23 @@ export default class HorizontalScroll extends Component {
     static propTypes = {
         data: PropTypes.any.isRequired,
         renderItem: PropTypes.any.isRequired,
-        intervalWidth: PropTypes.number,
         align: PropTypes.string, // enum typecheck in View
         hasDots: PropTypes.bool,
         hasTint: PropTypes.bool,
         hasPaging: PropTypes.bool
     }
     static defaultProps = {
-        intervalWidth: screenWidth,
         align: 'center',
         hasPaging: false
     }
     state = {
-        scrollX: 0
+        scrollX: 0,
     }
     render() {
         const {
-            hasDots, hasTint, hasPaging, intervalWidth, align, data, renderItem
+            hasDots, hasTint, hasPaging, align, data, renderItem
         } = this.props
-        const position = Animated.divide(this.state.scrollX, intervalWidth)
+        const position = Animated.divide(this.state.scrollX, screenWidth)
         const handleScroll = (e) => {
             const { contentOffset } = e.nativeEvent
             // console.log('nativeEvent ', e.nativeEvent)
