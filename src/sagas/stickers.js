@@ -68,7 +68,7 @@ const data = [
             {
                 key: 13,
                 img: 'mem4'
-            },
+            }
         ]
     },
     {
@@ -99,7 +99,7 @@ const data = [
             {
                 key: 19,
                 img: 'valley5'
-            },
+            }
         ]
     },
     {
@@ -140,7 +140,6 @@ export function getStickers() {
 
 
 export function getCategories(id) {
-
     if (id || id === 0) {
         // Return first equal category field value from data array
         return R.find(R.propEq('id', id))(data)

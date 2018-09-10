@@ -2,18 +2,13 @@
   "name": "categorySlider",
   "version": "0.1.0",
   "private": true,
-  "devDependencies": {
-    "babel-plugin-module-resolver": "^3.1.1",
-    "jest-expo": "~27.0.0",
-    "react-native-scripts": "1.14.0",
-    "react-test-renderer": "16.3.1"
-  },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
     "start": "react-native-scripts start",
     "eject": "react-native-scripts eject",
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
+    "eslint": "./node_modules/.bin/eslint . --ext .js --fix",
     "test": "jest"
   },
   "jest": {
@@ -25,5 +20,18 @@
     "ramda": "^0.25.0",
     "react": "16.3.1",
     "react-native": "~0.55.2"
+  },
+  "devDependencies": {
+    "babel-eslint": "^9.0.0",
+    "babel-plugin-module-resolver": "^3.1.1",
+    "eslint": "^5.5.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-import-resolver-babel-module": "^4.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.11.1",
+    "jest-expo": "~27.0.0",
+    "react-native-scripts": "1.14.0",
+    "react-test-renderer": "16.3.1"
   }
 }

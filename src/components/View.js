@@ -1,3 +1,5 @@
+/* eslint-disable no-underscore-dangle */
+
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { View as ReactNativeView, ViewPropTypes, StyleSheet } from 'react-native'
@@ -20,7 +22,7 @@ const alignStyles = StyleSheet.create({
 })
 const justifyStyles = StyleSheet.create({
     start: { justifyContent: 'flex-start' },
-    center: { justifyContent: 'center' },
+    center: { justifyContent: 'center' }
 })
 const bgColorStyles = StyleSheet.create({
     white: { backgroundColor: colors.white },
@@ -42,11 +44,13 @@ export default class View extends Component {
   static defaultProps = {
       hasMarginHorizontal: false,
       isFlexible: false,
-      bgColor: 'transparent',
+      bgColor: 'transparent'
   }
+
   setNativeProps = (nativeProps) => {
-      this._root.setNativeProps(nativeProps);
+      this._root.setNativeProps(nativeProps)
   }
+
   render() {
       const {
           hasMarginHorizontal,

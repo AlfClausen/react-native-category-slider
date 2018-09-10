@@ -1,4 +1,4 @@
-import React, {PureComponent} from 'react'
+import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { StyleSheet } from 'react-native'
 
@@ -20,15 +20,16 @@ const styles = StyleSheet.create({
     },
     imageWrapper: {
         height: screenWidth - g(48),
-        width: screenWidth - g(48),
-    },
+        width: screenWidth - g(48)
+    }
 })
 
 export default class StickerItem extends PureComponent {
     static propTypes = {
         image: PropTypes.string
     }
-    render () {
+
+    render() {
         const { image } = this.props
         return (
             <View
@@ -42,10 +43,9 @@ export default class StickerItem extends PureComponent {
                     bgColor="white"
                     style={[styles.circleWrapper, styles.circleShadow]}
                 >
-                    <Img name={image} style={styles.imageWrapper}/>
+                    <Img name={image} style={styles.imageWrapper} />
                 </View>
             </View>
         )
     }
-
 }

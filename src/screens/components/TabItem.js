@@ -1,14 +1,14 @@
-import React, { PureComponent } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 import { g } from 'styles'
 
-import View from 'components/View'
 import Text from 'components/Text'
 import Touch from 'components/Touch'
 
-export default function TabItem({ title, currentTab, tabId, onPress }) {
-    console.log('currentTab', currentTab)
+export default function TabItem({
+    title, currentTab, tabId, onPress
+}) {
     return (
         <Touch disabled={currentTab === tabId} onPress={() => onPress(tabId)}>
             <Text

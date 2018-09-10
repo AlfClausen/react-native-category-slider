@@ -25,15 +25,17 @@ export default class StickersList extends Component {
         tab: getCategories(0).id,
         scrollX: 0
     }
+
     onSelectTab = (tabId) => {
         const stickerKey = getCategories(tabId).stickers[0].key
         this.setState({
             tab: tabId,
             scrollX: screenWidth * stickerKey
         })
-        this.tabsListRef.scrollToIndex({ animated: true, index: tabId });
-        this.stickersListRef.scrollToIndex({ animated: false, index: stickerKey });
+        this.tabsListRef.scrollToIndex({ animated: true, index: tabId })
+        this.stickersListRef.scrollToIndex({ animated: false, index: stickerKey })
     }
+
     renderTabs() {
         const { tab } = this.state
         const getItemLayout = (data, index) => (
@@ -49,7 +51,7 @@ export default class StickersList extends Component {
                     getItemLayout={getItemLayout}
                     data={getCategories()}
                     onScroll={() => {}}
-                    onScrollToIndexFailed={()=>{}}
+                    onScrollToIndexFailed={() => {}}
                     showsHorizontalScrollIndicator={false}
                     renderItem={({ item }) => {
                         const { id, category } = item
@@ -62,13 +64,13 @@ export default class StickersList extends Component {
                             />
                         )
                     }}
-                    keyExtractor={(item) => item.id.toString()}
+                    keyExtractor={item => item.id.toString()}
                 />
             </View>
         )
     }
+
     renderStickers() {
-        const { tab } = this.state
         const getItemLayout = (data, index) => (
             { length: screenWidth, offset: screenWidth * index, index }
         )
@@ -79,7 +81,7 @@ export default class StickersList extends Component {
                 scrollX: contentOffset.x,
                 tab: getStickers()[index].id
             })
-            this.tabsListRef.scrollToIndex({ animated: true, index: getStickers()[index].id });
+            this.tabsListRef.scrollToIndex({ animated: true, index: getStickers()[index].id })
         }
         return (
             <View>
@@ -103,11 +105,12 @@ export default class StickersList extends Component {
                             />
                         )
                     }}
-                    keyExtractor={(item) => item.key.toString()}
+                    keyExtractor={item => item.key.toString()}
                 />
             </View>
         )
     }
+
     renderDots() {
         const { tab, scrollX } = this.state
         const position = Animated.divide(scrollX, screenWidth)
@@ -125,7 +128,7 @@ export default class StickersList extends Component {
                         return (
                             <Animated.View
                                 key={key}
-                                style={[{ opacity }, styles.dotsWrapper,]}
+                                style={[{ opacity }, styles.dotsWrapper]}
                             />
                         )
                     })}
@@ -133,6 +136,7 @@ export default class StickersList extends Component {
             </View>
         )
     }
+
     render() {
         const { tab } = this.state
         return (

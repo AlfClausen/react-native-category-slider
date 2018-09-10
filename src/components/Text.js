@@ -1,26 +1,28 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Text as ReactNativeText, ViewPropTypes, Animated, StyleSheet } from 'react-native'
+import React from 'react'
+import PropTypes from 'prop-types'
+import {
+    Text as ReactNativeText, ViewPropTypes, Animated, StyleSheet
+} from 'react-native'
 
 import { colors } from 'styles'
 import { sizeStyles } from 'styles/text'
 
 const styles = StyleSheet.create({
     root: {
-        backgroundColor: colors.transparent,
+        backgroundColor: colors.transparent
     }
 })
 
 const colorStyles = StyleSheet.create({
     black: {
-        color: colors.black,
+        color: colors.black
     },
     white: {
-        color: colors.white,
+        color: colors.white
     },
     inactive: {
-        color: colors.inactive,
-    },
+        color: colors.inactive
+    }
 })
 
 const alignStyles = StyleSheet.create({
@@ -42,13 +44,13 @@ export default function Text({
             sizeStyles[size],
             alignStyles[align],
             colorStyles[color],
-            style,
+            style
         ],
-        ...rest,
-    };
-    return isAnimated ?
-        <Animated.Text {...props}/> :
-        <ReactNativeText {...props}/>
+        ...rest
+    }
+    return isAnimated
+        ? <Animated.Text {...props} />
+        : <ReactNativeText {...props} />
 }
 
 Text.propTypes = {

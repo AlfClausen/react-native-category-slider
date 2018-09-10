@@ -4,6 +4,6 @@ import StickersList from 'screens/StickersList'
 
 export default function App() {
     return (
-        <StickersList/>
+        <StickersList />
     )
 }
