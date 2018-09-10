@@ -22,16 +22,16 @@ const styles = StyleSheet.create({
 
 export default class StickersList extends Component {
     state = {
-        tab: getCategories()[0].category,
+        tab: getCategories(0).id,
         scrollX: 0
     }
-    onSelectTab = (category) => {
-        const stickerKey = getCategories(category).stickers[0].key
+    onSelectTab = (tabId) => {
+        const stickerKey = getCategories(tabId).stickers[0].key
         this.setState({
-            tab: category,
+            tab: tabId,
             scrollX: screenWidth * stickerKey
         })
-        this.tabsListRef.scrollToIndex({ animated: true, index: getCategories(category).id });
+        this.tabsListRef.scrollToIndex({ animated: true, index: tabId });
         this.stickersListRef.scrollToIndex({ animated: false, index: stickerKey });
     }
     renderTabs() {
@@ -52,17 +52,17 @@ export default class StickersList extends Component {
                     onScrollToIndexFailed={()=>{}}
                     showsHorizontalScrollIndicator={false}
                     renderItem={({ item }) => {
-                        const { category, title } = item
+                        const { id, title } = item
                         return (
                             <TabItem
                                 title={title}
                                 currentTab={tab}
-                                tabId={category}
-                                onPress={category => this.onSelectTab(category)}
+                                tabId={id}
+                                onPress={this.onSelectTab}
                             />
                         )
                     }}
-                    keyExtractor={(item, index) => index.toString()}
+                    keyExtractor={(item) => item.id.toString()}
                 />
             </View>
         )
@@ -77,7 +77,7 @@ export default class StickersList extends Component {
             const index = Math.round(contentOffset.x / screenWidth)
             this.setState({
                 scrollX: contentOffset.x,
-                tab: getStickers()[index].category
+                tab: getStickers()[index].id
             })
             this.tabsListRef.scrollToIndex({ animated: true, index: getStickers()[index].id });
         }
@@ -96,7 +96,7 @@ export default class StickersList extends Component {
                     onEndReachedThreshold={0.5}
                     showsHorizontalScrollIndicator={false}
                     renderItem={({ item }) => {
-                        const { category, img } = item
+                        const { img } = item
                         return (
                             <StickerItem
                                 image={img}
@@ -134,7 +134,7 @@ export default class StickersList extends Component {
         )
     }
     render() {
-        const { tab, scrollX } = this.state
+        const { tab } = this.state
         return (
             <View
                 isFlexible

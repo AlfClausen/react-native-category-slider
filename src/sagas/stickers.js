@@ -143,10 +143,11 @@ export function getStickers() {
 }
 
 
-export function getCategories(category) {
-    if (category) {
+export function getCategories(id) {
+
+    if (id || id === 0) {
         // Return first equal category field value from data array
-        return R.find(R.propEq('category', category))(data)
+        return R.find(R.propEq('id', id))(data)
     }
     return data
 }

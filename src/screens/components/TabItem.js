@@ -8,6 +8,7 @@ import Text from 'components/Text'
 import Touch from 'components/Touch'
 
 export default function TabItem({ title, currentTab, tabId, onPress }) {
+    console.log('currentTab', currentTab)
     return (
         <Touch disabled={currentTab === tabId} onPress={() => onPress(tabId)}>
             <Text
@@ -23,7 +24,7 @@ export default function TabItem({ title, currentTab, tabId, onPress }) {
 
 TabItem.propTypes = {
     title: PropTypes.string.isRequired,
-    currentTab: PropTypes.string.isRequired,
-    tabId: PropTypes.string.isRequired,
+    currentTab: PropTypes.number.isRequired,
+    tabId: PropTypes.number.isRequired,
     onPress: PropTypes.func.isRequired
 }
