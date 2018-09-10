@@ -52,10 +52,10 @@ export default class StickersList extends Component {
                     onScrollToIndexFailed={()=>{}}
                     showsHorizontalScrollIndicator={false}
                     renderItem={({ item }) => {
-                        const { id, title } = item
+                        const { id, category } = item
                         return (
                             <TabItem
-                                title={title}
+                                title={category}
                                 currentTab={tab}
                                 tabId={id}
                                 onPress={this.onSelectTab}

@@ -3,8 +3,7 @@ import R from 'ramda'
 const data = [
     {
         id: 0,
-        category: 'cats',
-        title: 'Котэ',
+        category: 'Котэ',
         color: 'rgba(140, 160, 200, 0.5)',
         stickers: [
             {
@@ -47,8 +46,7 @@ const data = [
     },
     {
         id: 1,
-        category: 'mems',
-        title: 'Мемасы',
+        category: 'Мемасы',
         color: 'rgba(190, 140, 200, 0.5)',
         stickers: [
             {
@@ -75,8 +73,7 @@ const data = [
     },
     {
         id: 2,
-        category: 'valley',
-        title: 'Долина',
+        category: 'Долина',
         color: 'rgba(200, 180, 140, 0.5)',
         stickers: [
             {
@@ -107,8 +104,7 @@ const data = [
     },
     {
         id: 3,
-        category: 'pepe',
-        title: 'Пепе',
+        category: 'Пепе',
         color: 'rgba(160, 200, 140, 0.5)',
         stickers: [
             {
