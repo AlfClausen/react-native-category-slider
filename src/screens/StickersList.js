@@ -46,9 +46,9 @@ export default class StickersList extends Component {
         const index = Math.round(contentOffset.x / screenWidth)
         this.setState({
             scrollX: contentOffset.x,
-            tab: getStickers()[index].id
+            tab: getStickers(index).id
         })
-        this.tabsListRef.scrollToIndex({ animated: true, index: getStickers()[index].id })
+        this.tabsListRef.scrollToIndex({ animated: true, index: getStickers(index).id })
     }
 
     renderTabs() {

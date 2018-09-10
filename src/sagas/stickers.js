@@ -133,15 +133,17 @@ const data = [
 
 // In real app here should be saga with api call
 
-export function getStickers() {
+export function getStickers(key) {
     // Combine arrays of objects into one flat array
-    return (
-        R.flatten(
-            R.map(category => R.map(sticker => R.merge(
-                R.dissoc('stickers', category), sticker
-            ), category.stickers), data)
-        )
+    const flatArray = R.flatten(
+        R.map(category => R.map(sticker => R.merge(
+            R.dissoc('stickers', category), sticker
+        ), category.stickers), data)
     )
+    if (key || key === 0) {
+        return R.find(R.propEq('key', key))(flatArray)
+    }
+    return flatArray
 }
 
 export function getCategories(id) {
