@@ -135,7 +135,13 @@ const data = [
 
 export function getStickers() {
     // Combine arrays of objects into one flat array
-    return R.flatten(R.map(cat => R.map(sticker => R.merge(R.dissoc('stickers', cat), sticker), cat.stickers), data))
+    return (
+        R.flatten(
+            R.map(category => R.map(sticker => R.merge(
+                R.dissoc('stickers', category), sticker
+            ), category.stickers), data)
+        )
+    )
 }
 
 

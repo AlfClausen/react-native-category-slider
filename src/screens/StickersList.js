@@ -1,24 +1,14 @@
 import React, { Component } from 'react'
-import { FlatList, StyleSheet, Animated } from 'react-native'
+import { FlatList } from 'react-native'
 
 import { getCategories, getStickers } from 'sagas/stickers'
 
-import { g, colors, screenWidth } from 'styles'
+import { screenWidth } from 'styles'
 
 import View from 'components/View'
-import Separator from 'components/Separator'
+import Dots from 'components/Dots'
 import StickerItem from './components/StickerItem'
 import TabItem from './components/TabItem'
-
-const styles = StyleSheet.create({
-    dotsWrapper: {
-        height: g(2),
-        width: g(2),
-        marginHorizontal: 5,
-        borderRadius: g(2) / 2,
-        backgroundColor: colors.black
-    }
-})
 
 export default class StickersList extends Component {
     state = {
@@ -111,34 +101,8 @@ export default class StickersList extends Component {
         )
     }
 
-    renderDots() {
-        const { tab, scrollX } = this.state
-        const position = Animated.divide(scrollX, screenWidth)
-        return (
-            <View align="center">
-                <Separator height={4} />
-                <View flexDir="row">
-                    { getCategories(tab).stickers.map((sticker) => {
-                        const { key } = sticker
-                        const opacity = position.interpolate({
-                            inputRange: [key - 1, key, key + 1],
-                            outputRange: [0.25, 1, 0.25],
-                            extrapolate: 'clamp'
-                        })
-                        return (
-                            <Animated.View
-                                key={key}
-                                style={[{ opacity }, styles.dotsWrapper]}
-                            />
-                        )
-                    })}
-                </View>
-            </View>
-        )
-    }
-
     render() {
-        const { tab } = this.state
+        const { tab, scrollX } = this.state
         return (
             <View
                 isFlexible
@@ -147,7 +111,10 @@ export default class StickersList extends Component {
             >
                 { this.renderTabs() }
                 { this.renderStickers() }
-                { this.renderDots() }
+                <Dots
+                    scrollX={scrollX}
+                    data={getCategories(tab).stickers}
+                />
             </View>
         )
     }
