@@ -2,6 +2,7 @@ import R from 'ramda'
 
 const data = [
     {
+        id: 0,
         category: 'cats',
         title: 'Котэ',
         color: 'rgba(140, 160, 200, 0.5)',
@@ -45,6 +46,7 @@ const data = [
         ]
     },
     {
+        id: 1,
         category: 'mems',
         title: 'Мемасы',
         color: 'rgba(190, 140, 200, 0.5)',
@@ -72,6 +74,7 @@ const data = [
         ]
     },
     {
+        id: 2,
         category: 'valley',
         title: 'Долина',
         color: 'rgba(200, 180, 140, 0.5)',
@@ -103,6 +106,7 @@ const data = [
         ]
     },
     {
+        id: 3,
         category: 'pepe',
         title: 'Пепе',
         color: 'rgba(160, 200, 140, 0.5)',
@@ -134,17 +138,9 @@ const data = [
 // In real app here should be saga with api call
 
 export function getStickers() {
-    // Combine arrays of objects into one array
+    // Combine arrays of objects into one flat array
     return R.flatten(R.map(cat => R.map(sticker => R.merge(R.dissoc('stickers', cat), sticker), cat.stickers), data))
 }
-
-// export function getCurrentCategory(currentSticker) {
-//     const check = (sticker) => {
-//         sticker.id === currentSticker
-//         return sticker.category
-//     }
-//     R.map(check, getStickers())
-// }
 
 
 export function getCategories(category) {

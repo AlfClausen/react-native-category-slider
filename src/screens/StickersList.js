@@ -5,10 +5,8 @@ import { getCategories, getStickers } from 'sagas/stickers'
 
 import { g, colors, screenWidth } from 'styles'
 
-import Text from 'components/Text'
 import View from 'components/View'
 import Separator from 'components/Separator'
-import HorizontalScroll from 'components/HorizontalScroll'
 import StickerItem from './components/StickerItem'
 import TabItem from './components/TabItem'
 
@@ -33,18 +31,25 @@ export default class StickersList extends Component {
             tab: category,
             scrollX: screenWidth * stickerKey
         })
-        this.flatListRef.scrollToIndex({ animated: false, index: stickerKey });
-
+        this.tabsListRef.scrollToIndex({ animated: true, index: getCategories(category).id });
+        this.stickersListRef.scrollToIndex({ animated: false, index: stickerKey });
     }
     renderTabs() {
         const { tab } = this.state
+        const getItemLayout = (data, index) => (
+            // In the future we should check every variable row width
+            { length: 60, offset: 40 * index, index }
+        )
         return (
             <View align="start">
                 <FlatList
+                    ref={(ref) => { this.tabsListRef = ref }}
                     horizontal
                     scrollEnabled
+                    getItemLayout={getItemLayout}
                     data={getCategories()}
                     onScroll={() => {}}
+                    onScrollToIndexFailed={()=>{}}
                     showsHorizontalScrollIndicator={false}
                     renderItem={({ item }) => {
                         const { category, title } = item
@@ -69,17 +74,17 @@ export default class StickersList extends Component {
         )
         const handleScroll = (event) => {
             const { contentOffset } = event.nativeEvent
-            const qwe = Math.round(contentOffset.x / screenWidth)
-            console.log('nativeEvent ', qwe)
+            const index = Math.round(contentOffset.x / screenWidth)
             this.setState({
                 scrollX: contentOffset.x,
-                tab: getStickers()[qwe].category
+                tab: getStickers()[index].category
             })
+            this.tabsListRef.scrollToIndex({ animated: true, index: getStickers()[index].id });
         }
         return (
             <View>
                 <FlatList
-                    ref={(ref) => { this.flatListRef = ref }}
+                    ref={(ref) => { this.stickersListRef = ref }}
                     horizontal
                     scrollEnabled
                     pagingEnabled
@@ -129,9 +134,13 @@ export default class StickersList extends Component {
         )
     }
     render() {
+        const { tab, scrollX } = this.state
         return (
-            <View isFlexible justify="center" style={{ backgroundColor: getCategories(this.state.tab).color }}>
-            {/*<View isFlexible justify="center" style={{ backgroundColor: color }}>*/}
+            <View
+                isFlexible
+                justify="center"
+                style={{ backgroundColor: getCategories(tab).color }}
+            >
                 { this.renderTabs() }
                 { this.renderStickers() }
                 { this.renderDots() }
