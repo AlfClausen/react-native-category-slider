@@ -144,7 +144,6 @@ export function getStickers() {
     )
 }
 
-
 export function getCategories(id) {
     if (id || id === 0) {
         // Return first equal category field value from data array

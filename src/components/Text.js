@@ -1,3 +1,5 @@
+/* eslint-disable react/forbid-foreign-prop-types */
+
 import React from 'react'
 import PropTypes from 'prop-types'
 import {
@@ -58,5 +60,8 @@ Text.propTypes = {
     size: PropTypes.oneOf(['title3', 'body']),
     align: PropTypes.oneOf(['left', 'center']),
     isAnimated: PropTypes.bool,
-    style: ViewPropTypes.style
+    style: PropTypes.oneOfType([
+        Animated.Text.propTypes.style,
+        ViewPropTypes.style
+    ])
 }
